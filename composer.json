@@ -1,0 +1,27 @@
+{
+    "name": "rlinaresdev/core",
+    "description": "Core Developer Applications @IIPEC",
+    "keywords": ["laravel, core, library"],
+    "license": "MIT",
+    "type": "package",
+    "authors": [
+        {
+            "name": "Ing. Ramón A Linares Febles",
+            "email": "rlinares4381@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.4"
+    },
+    "autoload": {
+        "classmap": [
+        ],
+        "psr-4": {
+            "Core\\": "src/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev"
+}
