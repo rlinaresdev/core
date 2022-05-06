@@ -57,7 +57,7 @@ class Urls {
 			}
 		}
 
-        return app(UrlGenerator::class)->to($path, $parameters, $secure);
+      return app(UrlGenerator::class)->to($path, $parameters, $secure);
     }
 
     public function publicUrl($path=null, $parameters = [], $secure = null) {

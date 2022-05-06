@@ -14,10 +14,10 @@ class Info {
   		return [
   			"type"			  => "core",
   			"slug"			  => "core",
-  			"kernel"		  => \Core\Kernel::class,
+  			"kernel"		     => \Core\Kernel::class,
   			"info"			  => \Core\Info::class,
   			"token"			  => NULL,
-  			"activated" 	=> 0,
+  			"activated" 	  => 0,
   		];
   	}
 

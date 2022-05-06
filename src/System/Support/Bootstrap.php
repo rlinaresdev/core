@@ -24,6 +24,10 @@ class Bootstrap {
 
 		if(empty($key)) return $malla;
 
+      if($key == "local") {
+         return $this;
+      }
+
 		if(!empty($key) && empty($args)) {
 
 			if( array_key_exists( $key, self::$APP ) ) {
@@ -53,4 +57,5 @@ class Bootstrap {
 			}
 		}
 	}
+   
 }

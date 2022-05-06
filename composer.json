@@ -14,10 +14,9 @@
         "php": ">=7.4"
     },
     "autoload": {
-        "classmap": [
-        ],
         "psr-4": {
-            "Core\\": "src/"
+            "Core\\": "src/System/",
+            "Core\\Http\\": "src/Http/"
         }
     },
     "config": {

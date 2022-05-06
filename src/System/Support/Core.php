@@ -22,9 +22,11 @@ class Core {
 		return self::$app->load( $this, $key, $args, $params );
 	}
 
-	public function hasModule($slug=null, $path=__RLINARESDEV__) {
-		return in_array($slug, $this->load("finder")->map($path));
-	}
+   /*
+   * MOUNT */
+   public function mount($info) {
+      $this->load("loader")->mount( $info );
+   }
 
 	/*
 	* LANGUAGE */
@@ -38,17 +40,17 @@ class Core {
 		return $this->load("url")->url($path, $parameters, $secure);
 	}
 
-	public function addTagUrl($taggs=[]) {
+	public function addUrl($taggs=[]) {
 		return $this->load("urls")->addTag("urls", $taggs);
 	}
 
 	/*
 	* PATH */
-	public function path($path=null) {
-		return $this->load("urls")->path($path);
-	}
+	// public function path($path=null) {
+	// 	return $this->load("urls")->path($path);
+	// }
 
-	public function addTagPath($taggs=[]) {
+	public function addPath($taggs=[]) {
 		return $this->load("urls")->addTag("paths", $taggs);
 	}
 
@@ -60,6 +62,10 @@ class Core {
 
 	/*
 	* VALIDATION */
+   public function hasModule($slug=null, $path=__MODULE__) {
+		return in_array($slug, $this->load("finder")->map($path));
+	}
+
 	public function isAppStart( $type=null, $slug=null ) {
 		return $this->load("loader")->isAppStart($type, $slug);
 	}

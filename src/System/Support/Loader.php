@@ -15,10 +15,18 @@ class Loader {
 
 	protected static $app;
 
+   protected $modules = [
+      "core"       => [],
+      "library"    => [],
+      "package"    => [],
+   ];
+
 	public function __construct( $app ) {
 		self::$app = $app;
 	}
 
+   /*
+   * VALIDATION */
 	public function isAppStart( $type = null, $slug=null ) {
 		if( (env("DB_HOST") == "127.0.0.1") && (env("DB_DATABASE") == "laravel") ) {
 			return FALSE;
@@ -31,6 +39,66 @@ class Loader {
 		}
 		return FALSE;
 	}
+
+   /*
+   * MOUNTED */
+   public function mount( $info ) {
+      if( is_null($info) ) return null;
+
+      $info       = $this->optimize($info);
+      $app        = (object) $info->app();
+      $credential = (object) $info->info();
+
+      /*
+      * ADD MODULES DRIVERS */
+      $this->addModule( array_merge($info->info(), $info->app()) );
+
+      /*
+      * CONFIG */
+      $this->mountConfig( $info );
+
+      /*
+      * KERNEL */
+      $this->mountKernel( $app );
+   }
+
+   public function addModule( $app ) {
+      if( array_key_exists(($app = (object) $app)->type, $this->modules) ) {
+         $this->modules[$app->type][] = $app;
+      }
+   }
+
+   public function mountConfig($info) {
+      if( method_exists($info, "configs") ) {
+         if( !empty( ($configs = $info->configs()) ) ) {
+            foreach ($configs as $key => $value) {
+               app("config")->set($key, $value);
+            }
+         }
+      }
+   }
+
+   public function mountKernel( $app ) {
+      if( isset($app->kernel) ) {
+         $this->run($app->kernel);
+      }
+   }
+
+   public function optimize($info) {
+      if( is_object($info) ) {
+         return $info;
+      }
+
+      if( is_string($info) ) {
+         if( class_exists($info) ) {
+            return new $info();
+         }
+      }
+
+      abort(500, "Error Info Class", [
+         "info"   => $info
+      ]);
+   }
 
 	/*
 	* ALIASES
@@ -47,14 +115,12 @@ class Loader {
 	/*
 	* PROVIDERS
 	* Load ServiceProvider */
-	public function loadProviders($providers=[])
-	{
+	public function loadProviders($providers=[]) {
 		if(empty($providers)) return NULL;
 
 		if(!is_array($providers)) $providers = [$providers];
 
-		foreach ($providers as $provider)
-		{
+		foreach ($providers as $provider) {
 			self::$app->register($provider);
 		}
 	}
@@ -66,9 +132,7 @@ class Loader {
 
 		if( !empty($kernel) ) {
 
-			if( is_string($kernel) ) {
-				$kernel = new $kernel;
-			}
+			$kernel = $this->optimize($kernel);
 
 			## [0]
 			if( method_exists($kernel, "handler") ) $kernel->handler( self::$app );
