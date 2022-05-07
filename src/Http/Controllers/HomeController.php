@@ -19,4 +19,8 @@ class HomeController extends Controller {
    public function index() {
       return $this->render( "home", $this->app->home() );
    }
+
+   public function requeriment() {
+
+   }
 }
