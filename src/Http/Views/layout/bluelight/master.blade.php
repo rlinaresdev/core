@@ -8,6 +8,7 @@
             background: #f0f0f0;
          }
          .bt {
+            border: 1px solid transparent;
             border-radius: 3px 3px;
             color: #777;
             display: inline-block;
@@ -15,9 +16,9 @@
             padding: 5px 10px;
             text-decoration: none;
          }
-         .bt.bt-light{ background: #f3f3f3; }
-         .bt.bt-uva{ background: #7952b3; color: #fff;}
-         .bt.bt-primary{background: #0d6efd; color: #fff;}
+         .bt.bt-light{ background: #f3f3f3; border-color: #e9e9e9;}
+         .bt.bt-uva{ background: #8663ba; border-color: #54397d; color: #fff;}
+         .bt.bt-primary{background: #3d8bfd; border-color: #0d6efd; color: #fff;}
          .container {
             margin: 5% 15% 0 15%;
          }
