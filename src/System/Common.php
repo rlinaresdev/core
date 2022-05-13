@@ -65,8 +65,10 @@ if( !function_exists("__segment") ) {
 /*
 * Rutas etiquetadas */
 Core::addPath([
-   "__core"    => realpath(__DIR__."/../")."/",
-   "__localmodule"  => realpath(__DIR__."/../../../")."/",
+   "__base"          => core("urls")->baseDir(),
+   "__core"          => realpath(__DIR__."/../")."/",
+   "__cdn"           => public_path("__base"),
+   "__localmodule"   => realpath(__DIR__."/../../../")."/",
 ]);
 
 /*

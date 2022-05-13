@@ -8,21 +8,17 @@ namespace Core\Http\Controllers\Support;
  *---------------------------------------------------------
 */
 
-class Home {
+class Env {
 
    protected $app;
 
-   public function __construct( ) {
+   public function __construct( $app=null ) {
+      $this->app = $app;
    }
 
-   public function home() {
-      $data["title"] = 'Core Install';
-
-      return $data;
-   }
-
-   public function requeriment() {
-      $data["title"] = 'Core Install';
+   public function data() {
+      $data["title"] = "Anviente Servidor";
+      
 
       return $data;
    }

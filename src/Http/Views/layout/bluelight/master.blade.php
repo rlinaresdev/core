@@ -74,21 +74,7 @@
    </head>
    <body>
       <main class="container">
-         <article class="box box-center">
-            <header class="box-header">
-               <h4>Core</h4>
-            </header>
-            <section class="box-body">
-               <article class="block">
-                  <p>Core V-1.0 Developer Applications</p>
-                  <a href="https://github.com/rlinaresdev/core" target="_blank" class="bt bt-light">
-                     Información
-                  </a>
-                  <a href="#" class="bt bt-primary">Requerimintos</a>
-                  <a href="#" class="bt bt-uva">Inciar Instalación</a>
-               </article>
-            </section>
-         </article>
+         @yield("body", "Empty")
       </main>
    </body>
 </html>

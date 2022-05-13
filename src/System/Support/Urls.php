@@ -11,7 +11,7 @@ use \Illuminate\Contracts\Routing\UrlGenerator;
 
 class Urls {
 
-	protected $base_dir = "malla";
+	protected $base_dir = "apps";
 
     protected $secure = false;
 
@@ -76,11 +76,11 @@ class Urls {
 
     	if(!empty(($paths = $this->taggs["paths"]))) {
         	foreach( $paths as $key => $value ) {
-				$path = str_replace($key, $value, $path);
+				$path = str_replace($key, rtrim($value, '/'), $path);
 			}
       }
 
-        return $path;
+      return $path;
     }
 
     public function publicPath($path=null) {

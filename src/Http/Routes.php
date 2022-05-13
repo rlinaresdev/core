@@ -8,6 +8,7 @@
 */
 
 Route::get("/", "HomeController@index");
-Route::get("/requeriments", "HomeController@index");
-Route::get("/env", "HomeController@index");
-Route::get("/database", "HomeController@index");
+Route::get("/requeriments", "HomeController@requeriment");
+
+Route::get("/env", "EnvController@index");
+Route::get("/database", "DatabaseController@index");

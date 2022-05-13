@@ -1,4 +1,5 @@
 <?php
+namespace Core\Http\Controllers\Support;
 
 /*
  *---------------------------------------------------------
@@ -7,13 +8,15 @@
  *---------------------------------------------------------
 */
 
+class Database {
 
-/*
-* VIEWS */
-$this->loadViewsFrom(__DIR__.'/Views', 'core');
+   protected $app;
 
-/*
-* CDN */
-$this->publishes([
-   __path("__core/System/Storage/Assets") => __path("__cdn")
-], "core");
+   public function __construct( ) {
+   }
+
+   public function data() {
+      return [
+      ];
+   }
+}

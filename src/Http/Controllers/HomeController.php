@@ -11,7 +11,7 @@ namespace Core\Http\Controllers;
 use Core\Http\Controllers\Support\Home;
 
 class HomeController extends Controller {
-   
+
    public function __construct( Home $app ) {
       $this->boot($app);
    }
@@ -21,6 +21,6 @@ class HomeController extends Controller {
    }
 
    public function requeriment() {
-
+      return $this->render( "requeriment", $this->app->requeriment() );
    }
 }
