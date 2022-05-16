@@ -1,2 +1,29 @@
 @charset "utf-8";
+body{
+   background: #f0f0f0;
+}
+[role=install] {
+   padding: 10% 0 0 0;
+}
+.box{
+   border-radius: 4px 4px;
+   margin: 0 0 15px 0;
+}
+.box .box-header{
+   padding: 20px 15px 5px 15px;
+}
+.box .box-header h4 {
+   display: inline-block;
+   margin: 0 0;
+   padding: 0 0;
+}
+.box .box-body {
+   padding: 5px 0 0 0;
+}
+.box .box-body .block {
+   padding: 0 15px 15px 15px;
+}
 
+.box.box-light {
+   background: #fff;
+}

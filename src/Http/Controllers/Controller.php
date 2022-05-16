@@ -22,11 +22,26 @@ class Controller extends BaseController {
 
    protected $path = "core::";
 
+   protected $skin;
+
    public function boot( $app=null, $data=[] ) {
 
-      $this->app     = $app;
-      $data["path"]  = $this->path;
-      $data["skin"]  = new Skin("bluelight");
+      $theme = "bluelight";
+      
+      $this->skin = new Skin($theme);
+
+      $this->app        = $app;
+      $data["path"]     = $this->path;
+      $data["skin"]     = $this->skin;
+      $data["title"]    = "Empty";
+      $data["charset"]  = "utf-8";
+      $data["language"] = "es";
+
+      if( $theme == "bluelight" ) {
+         app("core")->addUrl([
+            "__bluelight" => __url("__cdn/"),
+         ]);
+      }
 
       $this->share($data);
 

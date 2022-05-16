@@ -1,80 +1,39 @@
 <!DOCTYPE html>
-<html lang="es" dir="ltr">
+<html lang="{{$language}}" dir="ltr">
    <head>
-      <meta charset="utf-8">
+      <meta charset="{{$charset}}">
+   	  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   	  <meta name="viewport" content="width=device-width, initial-scale=1">
+   	  <link href="{{config("app.logo")}}" rel='shortcut icon' type='image/png'/>
+
+      @section("metadata")
+
+   	 <!-- CSRF Token -->
+   	 <meta name="csrf-token" content="{{ csrf_token() }}">
+
+		@show
+
       <title>{{$title}}</title>
-      <style media="screen">
-         body {
-            background: #f0f0f0;
-         }
-         .bt {
-            border: 1px solid transparent;
-            border-radius: 3px 3px;
-            color: #777;
-            display: inline-block;
-            font-size: 14px;
-            padding: 5px 10px;
-            text-decoration: none;
-         }
-         .bt.bt-light{ background: #f3f3f3; border-color: #e9e9e9;}
-         .bt.bt-uva{ background: #8663ba; border-color: #54397d; color: #fff;}
-         .bt.bt-primary{background: #3d8bfd; border-color: #0d6efd; color: #fff;}
-         .container {
-            margin: 5% 15% 0 15%;
-         }
-         @media(min-width:1280px) {
-            .container {margin: 5% 30% 0 30%;}
-         }
-         @media(max-width:990px) {
-            .container {margin: 5% 2% 0 2%;}
-         }
-         .box {
-            background: #fff;
-         }
-         .box .box-header {
-            padding: 20px 15px 5px 15px;
-         }
-         .box .box-header h4 {
-            font-size: 20px;
-            margin: 0 0;
-            padding: 0 0;
-         }
-         .box .box-body hr {
-            border: none;
-            border-top: 1px solid #ddd;
-            border-button: 1px solid #f3f3f3;
-            margin: 5px 0 5px 0;
-         }
-         .box .box-body .block {
-            padding: 0 15px 15px 15px;
-         }
-         .box .box-body .block p {
-            font-size: 13px;
-            margin-left: 0 0 3px 0;
-            text-align: justify;
-         }
-         .box .box-footer {
-            border-top: 1px solid #ddd;
-            padding: 5px 0 0 0;
-         }
-         .box .box-footer .block {
-            padding: 0 15px 5px 15px;
-         }
-         .box .box-footer .block.block-brand {
-            font-size: 12px;
-         }
 
-         .box.box-center,
-         .box.box-center .box-body .block p {
-            border-radius: 4px 4px;
-            text-align: center;
-         }
+      @section("css")
 
-      </style>
+     <link href="{{__url('__bluelight/css/bootstrap.min.css')}}" rel="stylesheet">
+     <link href="{{__url('__bluelight/css/mdi-6595.min.css')}}" rel="stylesheet">
+     <link href="{{__url('__bluelight/css/boxed.ui.css')}}" rel="stylesheet">
+     <link href="{{__url('__bluelight/css/layout.ui.css')}}" rel="stylesheet">
+     @show
+
    </head>
    <body>
-      <main class="container">
-         @yield("body", "Empty")
-      </main>
+      
+      @yield("body", 'Content Page')
+
+		@section("js")
+
+		<script src="{{__url('__bluelight/js/jquery-v3.6.0.min.js')}}"></script>
+		<script src="{{__url('__bluelight/js/bootstrap.min.js')}}"></script>
+		<script src="{{__url('__bluelight/js/layout.ui.js')}}"></script>
+		@show
+
    </body>
 </html>
