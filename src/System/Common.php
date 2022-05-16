@@ -65,16 +65,19 @@ if( !function_exists("__segment") ) {
 /*
 * Urls etiquetadas */
 Core::addUrl([
-   "__base" => Core::load("urls")->baseDir(),
-   "__cdn/" => "__base/cdn/",
+   "__base"    => Core::load("urls")->baseDir(),
+   "__cdn/"    => "__base/cdn/",
 ]);
+
+
 /*
 * Rutas etiquetadas */
 Core::addPath([
    "__base"          => core("urls")->baseDir(),
-   "__core"          => realpath(__DIR__."/../")."/",
+   "__core"          => realpath(__DIR__."/../"),
    "__cdn"           => public_path("__base/cdn/"),
    "__localmodule"   => realpath(__DIR__."/../../../")."/",
+   "__locale"        => "__core/Http/Locale/"
 ]);
 
 /*

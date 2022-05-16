@@ -8,6 +8,7 @@ namespace Core\Http\Controllers;
   *---------------------------------------------------------
 */
 
+use Illuminate\Http\Request;
 use Core\Http\Controllers\Support\Env;
 
 class EnvController extends Controller {
@@ -15,11 +16,15 @@ class EnvController extends Controller {
    public function __construct( Env $app ) {
       $this->boot($app);
 
-      $this->skin->setLayout("container", "col-6 offset-3 install");
+      $this->skin->setLayout("container", "col-6 offset-3");
    }
 
    public function index() {
       return $this->render( "env", $this->app->data() );
+   }
+
+   public function update( Request $request ) {
+      return $this->app->update($request);
    }
 
    public function published() {

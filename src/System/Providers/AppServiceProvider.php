@@ -21,10 +21,9 @@ class AppServiceProvider extends ServiceProvider {
    public function register() {
    }
 
-   public function getGrammars( $locale="es" ) {
-
-      if( $this->app["files"]->exists(__VENDORPATH__."App/Http/Langs/$locale.php") ) {
-         return $this->app["files"]->getRequire(__VENDORPATH__."App/Http/Langs/$locale.php");
+   public function getGrammars( $locale ) {
+      if( $this->app["files"]->exists($locale) ) {
+         return $this->app["files"]->getRequire($locale);
       }
 
       return NULL;

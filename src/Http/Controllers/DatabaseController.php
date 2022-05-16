@@ -13,6 +13,7 @@ use Core\Http\Controllers\Support\Database;
 class DatabaseController extends Controller {
    public function __construct( Database $app ) {
       $this->boot($app);
+      $this->skin->setLayout("container", "col-6 offset-3");
    }
 
    public function index() {

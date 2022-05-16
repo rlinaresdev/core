@@ -39,10 +39,10 @@
             </article>
             <article class="block">
                <a href="https://github.com/rlinaresdev/core" target="_blank" class="bt bt-info">
-                  Información
+                  {{__("words.information")}}
                </a>
-               <a href="{{url('requeriments')}}" class="bt bt-primary">Requerimintos</a>
-               <a href="{{__url("env")}}" class="bt bt-uva">Inciar Instalación</a>
+               <a href="{{url('requeriments')}}" class="bt bt-primary">{{__("words.requeriment")}}</a>
+               <a href="{{__url("env")}}" class="bt bt-uva">{{__("install.init")}}</a>
             </article>
          </section>
       </article>

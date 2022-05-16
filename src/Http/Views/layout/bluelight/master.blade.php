@@ -19,18 +19,17 @@
 
      <link href="{{__url('__bluelight/css/bootstrap.min.css')}}" rel="stylesheet">
      <link href="{{__url('__bluelight/css/mdi-6595.min.css')}}" rel="stylesheet">
-     <link href="{{__url('__bluelight/css/boxed.ui.css')}}" rel="stylesheet">
      <link href="{{__url('__bluelight/css/layout.ui.css')}}" rel="stylesheet">
      @show
 
    </head>
    <body>
-      
+
       @yield("body", 'Content Page')
 
 		@section("js")
 
-		<script src="{{__url('__bluelight/js/jquery-v3.6.0.min.js')}}"></script>
+		<script src="{{__url('__bluelight/js/jquery-360.min.js')}}"></script>
 		<script src="{{__url('__bluelight/js/bootstrap.min.js')}}"></script>
 		<script src="{{__url('__bluelight/js/layout.ui.js')}}"></script>
 		@show

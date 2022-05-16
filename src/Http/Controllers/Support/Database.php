@@ -16,7 +16,8 @@ class Database {
    }
 
    public function data() {
-      return [
-      ];
+      $data["title"] = __("words.database");
+
+      return $data;
    }
 }

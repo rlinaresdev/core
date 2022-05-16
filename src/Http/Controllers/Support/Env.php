@@ -28,6 +28,11 @@ class Env {
       return $data;
    }
 
+   public function update( $request ) {
+      app("files")->put( base_path('.env'), $request->env );
+      return back();
+   }
+
    public function published(){
       \Artisan::call("vendor:publish", ["--tag" => "core", "--force" => true]);
       return back();

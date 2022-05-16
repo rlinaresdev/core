@@ -3,10 +3,10 @@
    @section("content")
       <section role="install">
          <article class="box box-light">
-            <section class="box-body">
+            <section class="box-body body-panel">
                <article class="block">
                   Actualisar los recursos públicos
-                  <a href="{{__url("env/published")}}" class="btn btn-light">
+                  <a href="{{__url("env/published")}}" class="btn btn-light btn-sm">
                      {{__("words.publish")}}
                   </a>
                </article>
@@ -18,9 +18,9 @@
                <article class="block">
                   <form action="{{__url("env")}}" method="POST">
                      <div class="form-group pt-1">
-                        <label>{{__("server.environmet")}}</label>
+                        <label>{{__("laravel.environmet")}}</label>
                         <div class="form-group pt-1">
-                           <textarea name="env" class="form-control">{{$env}}</textarea>
+                           <textarea spellcheck="false" name="env" class="form-control txt-editor">{{$env}}</textarea>
                         </div>
                      </div>
                      <div class="form-group pt-2">
@@ -29,9 +29,13 @@
                            {{__("words.back")}}
                         </a>
 
-                        <button type="button" name="button" class="btn btn-primary btn-sm">
+                        <button type="submit" name="button" class="btn btn-primary btn-sm">
                            {{__("words.update")}}
                         </button>
+
+                        <a href="{{__url('/database')}}" class="btn btn-success btn-sm">
+                           {{__("words.database")}}
+                        </a>
                      </div>
                   </form>
                </article>
