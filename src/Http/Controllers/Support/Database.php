@@ -20,4 +20,8 @@ class Database {
 
       return $data;
    }
+
+   public function forge( $request ) {
+      dd( $request->all() );
+   }
 }

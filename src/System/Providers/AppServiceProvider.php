@@ -25,7 +25,6 @@ class AppServiceProvider extends ServiceProvider {
       if( $this->app["files"]->exists($locale) ) {
          return $this->app["files"]->getRequire($locale);
       }
-
       return NULL;
    }
 }

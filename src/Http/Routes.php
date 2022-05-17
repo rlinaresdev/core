@@ -15,3 +15,4 @@ Route::post("/env", "EnvController@update");
 
 Route::get("/env/published", "EnvController@published");
 Route::get("/database", "DatabaseController@index");
+Route::post("/database", "DatabaseController@forge");

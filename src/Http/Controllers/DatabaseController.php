@@ -8,6 +8,7 @@ namespace Core\Http\Controllers;
   *---------------------------------------------------------
 */
 
+use Core\Http\Controllers\Request\User;
 use Core\Http\Controllers\Support\Database;
 
 class DatabaseController extends Controller {
@@ -18,5 +19,9 @@ class DatabaseController extends Controller {
 
    public function index() {
       return $this->render( "database", $this->app->data() );
+   }
+
+   public function forge( User $request ) {
+      return $this->app->forge($request);
    }
 }

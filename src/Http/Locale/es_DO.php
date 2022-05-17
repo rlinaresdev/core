@@ -12,9 +12,10 @@ return [
    "laravel.environmet" => "Ambiente Laravel",
 
    "install.init"       => "Iniciar Instalación",
+   "init.construct"     => "Iniciar constructor",
 
    "words.actions"      => "Acciones",
-   "words.back"         => "Retornar",
+   "words.return"         => "Retornar",
    "words.database"     => "Base de Datos",
    "words.engine"       => "Motor",
    "words.host"         => "Servidor",
@@ -27,4 +28,5 @@ return [
    "words.port"         => "Puerto",
    "words.publish"      => "Publicar",
    "words.requeriment"  => "Requerimientos",
+
 ];

@@ -49,7 +49,7 @@
 
       <section class="box box-light">
          <header class="box-header">
-            <h4>Title</h4>
+            <h4>Seeder</h4>
          </header>
          <article class="box-body">
             <section class="block">
@@ -68,6 +68,15 @@
                            <label for="">{{__("words.pconfirm")}}</label>
                            <input type="password" name="rpwd" class="form-control">
                         </div>
+                        <div class="form-group pt-2">
+                           @csrf
+                           <a href="{{__url('env')}}" class="btn btn-outline-secondary btn-sm">
+                              {{__("words.return")}}
+                           </a>
+                           <button type="submit" name="button" class="btn btn-danger btn-sm">
+                              {{__("init.construct")}}
+                           </button>
+                        </div>
                      </form>
                   </div>
                   <div class="col-7">
@@ -75,12 +84,10 @@
                         Se procedera crear las entidades basicas requeridas y se registraran
                         los datos basicos necesarios para el correcto funcionamiento del Core.
                      </p>
-
                      <p>
                         Para iniciar el procso de migraciones y lanzar los seeder, indique la
                         cuenta administrativa en el siguiente formulario.
                      </p>
-
                      <p>
                         Este usuario tendra el control adsoluto del aplicativos asi como las
                         mayorias de lo recuros criticos de laravel.

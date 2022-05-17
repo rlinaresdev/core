@@ -26,13 +26,11 @@
                      <div class="form-group pt-2">
                         @csrf
                         <a href="{{__url('/')}}" class="btn btn-secondary btn-sm">
-                           {{__("words.back")}}
+                           {{ __("words.return") }}
                         </a>
-
                         <button type="submit" name="button" class="btn btn-primary btn-sm">
-                           {{__("words.update")}}
+                           {{ __("words.update") }}
                         </button>
-
                         <a href="{{__url('/database')}}" class="btn btn-success btn-sm">
                            {{__("words.database")}}
                         </a>
