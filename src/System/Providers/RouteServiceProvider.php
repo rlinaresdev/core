@@ -20,6 +20,6 @@ class RouteServiceProvider extends ServiceProvider {
    }
 
    public function map() {
-      Route::namespace($this->namespace)->group(__path('__core/Http/Routes.php'));
+      Route::middleware("web")->namespace($this->namespace)->group(__path('__core/Http/Routes.php'));
    }
 }

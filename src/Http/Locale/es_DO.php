@@ -14,11 +14,14 @@ return [
    "install.init"       => "Iniciar Instalación",
    "init.construct"     => "Iniciar constructor",
 
+   "user.admin"         => "Usuario Administrativo",
+
    "words.actions"      => "Acciones",
-   "words.return"         => "Retornar",
+   "words.return"       => "Retornar",
    "words.database"     => "Base de Datos",
    "words.engine"       => "Motor",
    "words.host"         => "Servidor",
+   "words.forge"        => "",
    "words.information"  => "Información",
    "words.update"       => "update",
    "words.user"         => "Usuario",
@@ -28,5 +31,4 @@ return [
    "words.port"         => "Puerto",
    "words.publish"      => "Publicar",
    "words.requeriment"  => "Requerimientos",
-
 ];

@@ -14,7 +14,7 @@ use Core\Http\Controllers\Support\Database;
 class DatabaseController extends Controller {
    public function __construct( Database $app ) {
       $this->boot($app);
-      $this->skin->setLayout("container", "col-6 offset-3");
+      $this->skin->setLayout("container", "col-4 offset-4");
    }
 
    public function index() {
@@ -22,6 +22,6 @@ class DatabaseController extends Controller {
    }
 
    public function forge( User $request ) {
-      return $this->app->forge($request);
+      return $this->render("forge", $this->app->forge($request));
    }
 }

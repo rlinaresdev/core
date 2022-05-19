@@ -2,19 +2,23 @@
 
    @section("content")
       <section role="install">
+
          <article class="box box-light">
-            <section class="box-body body-panel">
-               <article class="block">
-                  Actualisar los recursos públicos
-                  <a href="{{__url("env/published")}}" class="btn btn-light btn-sm">
+            <header class="box-header">
+               <h4>
+                  <i class="mdi mdi-laravel"></i> Laravel
+               </h4>
+            </header>
+            <section class="box-body">
+
+               <article class="block bg-light pt-3">
+                  Actualizar los recursos públicos
+                  <a href="{{__url("env/published")}}" class="btn btn-outline-secondary btn-sm px-1 py-0">
+                     <i class="mdi mdi-publish"></i>
                      {{__("words.publish")}}
                   </a>
                </article>
-            </section>
-         </article>
 
-         <article class="box box-light">
-            <section class="box-body">
                <article class="block">
                   <form action="{{__url("env")}}" method="POST">
                      <div class="form-group pt-1">

@@ -3,101 +3,61 @@
    @section("content")
 
    <article role="install">
-
       <section class="box box-light">
-         <header class="box-header">
-            <h4>{{__("words.migrations")}}</h4>
 
-            <a href="{{__url("env/published")}}" class="btn btn-light btn-sm">
-               {{__("words.publish")}}
-            </a>
+         <header class="box-header pb-0">
+            <h4>
+               <i class="mdi mdi-database"></i>
+               {{__("words.database")}}
+            </h4>
          </header>
-         <article class="box-body">
-            <section class="block">
 
-               <table class="table table-slim">
-                  <thead>
-                     <tr>
-                        <th>{{__("words.database")}}</th>
-                        <th>{{__("words.engine")}}</th>
-                        <th>{{__("words.host")}}</th>
-                        <th>{{__("words.port")}}</th>
-                        <th>{{__("words.user")}}</th>
-                        <th class="action">{{__('words.actions')}}</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     <tr>
-                        <td>{{env("DB_DATABASE")}}</td>
-                        <td>{{env("DB_CONNECTION")}}</td>
-                        <td>{{env("DB_HOST")}}</td>
-                        <td>{{env("DB_PORT")}}</td>
-                        <td>{{env("DB_USERNAME")}}</td>
-                        <td class="action">
-                           <a href="{{__url('env')}}" class="btn btn-outline-secondary btn-sm py-0">
-                              <i class="mdi mdi-cog"></i>
-                           </a>
-                        </td>
-                     </tr>
-                  </tbody>
-               </table>
+         <article class="box-body pt-4">
 
-               </article>
-            </section>
+            <div class="block bg-light mb-3 pt-3">
+               <ul class="list-group">
+                  @foreach( $engine as $label => $value )
+                  <li class="list-group-item px-3 py-1">
+                     <strong>{{ $label }}</strong> : {{$value}}
+                  </li>
+                  @endforeach
+               </ul>
+            </div>
+
+            <div class="block">
+
+               <h4>{{__("user.admin")}}</h4>
+
+               <form action="{{__url('database')}}" method="post">
+                  <div class="form-group pb-2">
+                     <label for="">{{__("words.user")}}</label>
+                     {!! $errors->first("user", '<p class="error m-0 mb-1 text-danger"> :message </p>') !!}
+                     <input type="text" name="user" class="form-control">
+                  </div>
+                  <div class="form-group pb-2">
+                     <label for="">{{__("words.password")}}</label>
+                     {!! $errors->first("pwd", '<p class="error m-0 mb-1 text-danger"> :message </p>') !!}
+                     <input type="password" name="pwd" class="form-control">
+                  </div>
+                  <div class="form-group pb-2">
+                     <label for="">{{__("words.pconfirm")}}</label>
+                     {!! $errors->first("rpwd", '<p class="error m-0 mb-1 text-danger"> :message </p>') !!}
+                     <input type="password" name="rpwd" class="form-control">
+                  </div>
+                  <div class="form-group pt-2">
+                     @csrf
+                     <a href="{{__url('env')}}" class="btn btn-outline-primary btn-sm">
+                        {{__("words.return")}}
+                     </a>
+                     <button type="submit" name="button" class="btn btn-danger btn-sm btn-block">
+                        <i class="mdi mdi-cog"></i>
+                        {{__("words.forge")}} {{__("init.construct")}}
+                     </button>
+                  </div>
+               </form>
+            </div>
+
          </article>
       </section>
-
-      <section class="box box-light">
-         <header class="box-header">
-            <h4>Seeder</h4>
-         </header>
-         <article class="box-body">
-            <section class="block">
-               <article class="row">
-                  <div class="col-5">
-                     <form class="#" action="{{__url("#")}}" method="post">
-                        <div class="form-group">
-                           <label for="">{{__("words.user")}}</label>
-                           <input type="text" name="user" class="form-control">
-                        </div>
-                        <div class="form-group">
-                           <label for="">{{__("words.password")}}</label>
-                           <input type="password" name="pwd" class="form-control">
-                        </div>
-                        <div class="form-group">
-                           <label for="">{{__("words.pconfirm")}}</label>
-                           <input type="password" name="rpwd" class="form-control">
-                        </div>
-                        <div class="form-group pt-2">
-                           @csrf
-                           <a href="{{__url('env')}}" class="btn btn-outline-secondary btn-sm">
-                              {{__("words.return")}}
-                           </a>
-                           <button type="submit" name="button" class="btn btn-danger btn-sm">
-                              {{__("init.construct")}}
-                           </button>
-                        </div>
-                     </form>
-                  </div>
-                  <div class="col-7">
-                     <p>
-                        Se procedera crear las entidades basicas requeridas y se registraran
-                        los datos basicos necesarios para el correcto funcionamiento del Core.
-                     </p>
-                     <p>
-                        Para iniciar el procso de migraciones y lanzar los seeder, indique la
-                        cuenta administrativa en el siguiente formulario.
-                     </p>
-                     <p>
-                        Este usuario tendra el control adsoluto del aplicativos asi como las
-                        mayorias de lo recuros criticos de laravel.
-                     </p>
-                  </div>
-               </article>
-            </section>
-         </article>
-      </section>
-
    </article>
-
    @endsection

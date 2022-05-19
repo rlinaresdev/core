@@ -16,7 +16,7 @@ class EnvController extends Controller {
    public function __construct( Env $app ) {
       $this->boot($app);
 
-      $this->skin->setLayout("container", "col-6 offset-3");
+      $this->skin->setLayout("container", "col-4 offset-4");
    }
 
    public function index() {

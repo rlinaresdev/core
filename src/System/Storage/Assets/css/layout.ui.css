@@ -45,6 +45,13 @@ body{
 }
 
 /*
+* LISTS GROUP */
+.list-group .list-group-item strong {
+   display: inline-block;
+   min-width: 40%;
+}
+
+/*
 * LISTS */
 .lists{
    list-style: none;
@@ -68,6 +75,9 @@ body{
 
 /*
 * TABLE */
+.table.table-sm td,{
+   padding:
+}
 .table .action {
    text-align: right;
 }
