@@ -14,12 +14,12 @@ use Illuminate\Support\Facades\Schema;
 class TableSchema {
 
     protected $tables = [
-      "routes",
       "apps",
       "apps_info",
       "apps_config",
       "apps_meta",
-      "apps_locale"
+      "apps_locale",
+      "routes",
     ];
 
     public function routes() {
@@ -50,8 +50,6 @@ class TableSchema {
 
         $table->string("type", 30);
         $table->string("slug", 30)->unique();
-
-        $table->text("kernel")->nullable();
         $table->text("info")->nullable();
         $table->text("token")->nullable();
 
@@ -93,9 +91,6 @@ class TableSchema {
 
         $table->integer('app_id')->unsigned();
         $table->foreign('app_id')->references('id')->on('apps')->onDelete('CASCADE')->onUpdate('CASCADE');
-
-        //$table->string("type", 30)->default("config");
-
         $table->string("key", 200);
         $table->text("value");
 
@@ -123,17 +118,19 @@ class TableSchema {
 
     public function apps_meta() {
       Schema::create('apps_meta', function ($table) {
-      	$table->bigIncrements('id');
+         $table->bigIncrements('id');
 
-        $table->integer('app_id')->unsigned();
-        $table->foreign('app_id')->references('id')->on('apps')->onDelete('CASCADE')->onUpdate('CASCADE');
+         $table->string("type", 30);
 
-        $table->string("key", 200);
-        $table->text("value");
+         $table->integer('app_id')->unsigned();
+         $table->foreign('app_id')->references('id')->on('apps')->onDelete('CASCADE')->onUpdate('CASCADE');
 
-        $table->boolean("activated")->default(1);
+         $table->string("key", 200);
+         $table->text("value");
 
-        $table->engine = 'InnoDB';
+         $table->boolean("activated")->default(1);
+
+         $table->engine = 'InnoDB';
       });
     }
 

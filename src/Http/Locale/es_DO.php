@@ -16,6 +16,7 @@ return [
 
    "user.admin"         => "Usuario Administrativo",
 
+   "words.account"      => "Cuenta",
    "words.actions"      => "Acciones",
    "words.return"       => "Retornar",
    "words.database"     => "Base de Datos",
@@ -31,4 +32,9 @@ return [
    "words.port"         => "Puerto",
    "words.publish"      => "Publicar",
    "words.requeriment"  => "Requerimientos",
+   "words.user"         => "Usuario",
+
+   ## FORM VALIDAITION
+   "validation.required" => "Campo requerido",
+   "validation.same"     => "Loas campos no coinciden",
 ];
