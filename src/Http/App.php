@@ -11,6 +11,7 @@
 /*
 * LOCALES */
 $this->app->setLocale( ($locale = "es_DO") );
+
 if( !empty( ($grammaries = $this->getGrammars(__path("__locale/$locale.php"))) ) ) {
    $LANG->addLines($grammaries, $locale);
 }

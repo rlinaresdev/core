@@ -21,6 +21,12 @@ class Info {
   		];
   	}
 
+   public function components() {
+      return [
+         \Core\User\Info::class,
+      ];
+   }
+
    public function depends() {
      return [
       // \Malla\Guard\Info::class,
@@ -42,7 +48,7 @@ class Info {
   	public function info() {
   		return [
   			"name"			=> "Core",
-  			"author"		=> "Ing. Ramón A Linares Febles",
+  			"author"		   => "Ing. Ramón A Linares Febles",
   			"email"			=> "rlinares4381@gmail.com",
   			"license"		=> "MIT",
   			"support"		=> "http://www.iipec.net",

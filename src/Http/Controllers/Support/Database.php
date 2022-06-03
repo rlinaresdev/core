@@ -7,6 +7,7 @@ namespace Core\Http\Controllers\Support;
  * Santo Domingo República Dominicana.
  *---------------------------------------------------------
 */
+use Core\User\Info;
 
 class Database {
 
@@ -16,8 +17,11 @@ class Database {
    }
 
    public function data() {
-      $data["title"]          = __("words.database");
-      $data["engine"]   = $this->widgetDB();
+      
+      (new Info)->migrate("up");
+
+      $data["title"]       = __("words.database");
+      $data["engine"]      = $this->widgetDB();
 
       return $data;
    }

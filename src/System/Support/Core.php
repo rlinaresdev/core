@@ -24,7 +24,7 @@ class Core {
 
    /*
    * MOUNT */
-   public function mount($info) {
+   public function mount($info=null) {
       $this->load("loader")->mount( $info );
    }
 
