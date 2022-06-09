@@ -13,14 +13,14 @@
 
                <article class="block bg-light pt-3">
                   Actualizar los recursos públicos
-                  <a href="{{__url("env/published")}}" class="btn btn-outline-secondary btn-sm px-1 py-0">
+                  <a href="{{__url("install/env/published")}}" class="btn btn-outline-secondary btn-sm px-1 py-0">
                      <i class="mdi mdi-publish"></i>
                      {{__("words.publish")}}
                   </a>
                </article>
 
                <article class="block">
-                  <form action="{{__url("env")}}" method="POST">
+                  <form action="{{__url("install/env")}}" method="POST">
                      <div class="form-group pt-1">
                         <label>{{__("laravel.environmet")}}</label>
                         <div class="form-group pt-1">
@@ -29,13 +29,13 @@
                      </div>
                      <div class="form-group pt-2">
                         @csrf
-                        <a href="{{__url('/')}}" class="btn btn-secondary btn-sm">
+                        <a href="{{__url('/install')}}" class="btn btn-secondary btn-sm">
                            {{ __("words.return") }}
                         </a>
                         <button type="submit" name="button" class="btn btn-primary btn-sm">
                            {{ __("words.update") }}
                         </button>
-                        <a href="{{__url('/database')}}" class="btn btn-success btn-sm">
+                        <a href="{{__url('/install/database')}}" class="btn btn-success btn-sm">
                            {{__("words.database")}}
                         </a>
                      </div>

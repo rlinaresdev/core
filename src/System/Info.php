@@ -8,14 +8,15 @@ namespace Core;
  *---------------------------------------------------------
 */
 
+
 class Info {
 
   	public function app() {
   		return [
   			"type"			  => "core",
   			"slug"			  => "core",
-  			"kernel"		     => \Core\Kernel::class,
   			"info"			  => \Core\Info::class,
+         "kernel"		     => \Core\Kernel::class,
   			"token"			  => NULL,
   			"activated" 	  => 0,
   		];
@@ -57,12 +58,17 @@ class Info {
   		];
   	}
 
+   public function install( $core ) {
+      (new \Core\Database\Migration\TableSchema)->up();
+      $core->create($this->app())->addInfo($this->info());
+   }
+
   	public function meta() {
   		return [
   		];
   	}
 
   	public function handler($core) {
-  		$core->create($this->app())->addInfo($this->info());
+  		//$core->create($this->app())->addInfo($this->info());
   	}
 }

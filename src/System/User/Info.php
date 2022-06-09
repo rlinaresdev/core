@@ -33,11 +33,34 @@ class Info {
   	}
 
    public function migrate($opt="up") {
-      $path = str_replace(base_path().'/', null, __DIR__."/UserSchema.php");
-   
+
+      $path = __DIR__."/Database/Migration";
+      $path = str_replace(base_path().'/', null, $path);
+
       if( $opt == "up" ) {
          \Artisan::call("migrate", ["--path" => $path]);
       }
+
+      if( $opt == "reset" ) {
+         \Artisan::call("migrate:reset", ["--path" => $path]);
+      }
+   }
+
+   public function seeder() {
+      \Artisan::call("db:seed", [
+         "--class" => \Core\User\Database\Seeder\Account::class
+      ]);
+   }
+
+   public function install( $core ) {
+      $core->create($this->app())->addInfo($this->info());
+      $this->migrate("up");
+      $this->seeder();
+
+   }
+
+   public function uninstall() {
+      $this->migrate("reset");
    }
 
   	public function meta() {
@@ -46,6 +69,6 @@ class Info {
   	}
 
   	public function handler($core) {
-  		$core->create($this->app())->addInfo($this->info())->addMeta("type", $this->meta());
+  		//$core->create($this->app())->addInfo($this->info())->addMeta("type", $this->meta());
   	}
 }

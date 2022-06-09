@@ -18,6 +18,7 @@ return [
 
    "words.account"      => "Cuenta",
    "words.actions"      => "Acciones",
+   "words.email"        => "Correo electrónico",
    "words.return"       => "Retornar",
    "words.database"     => "Base de Datos",
    "words.engine"       => "Motor",

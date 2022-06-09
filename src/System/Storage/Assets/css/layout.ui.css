@@ -27,6 +27,7 @@ body{
 }
 .box .box-header h4 {
    display: inline-block;
+   font-size: 20px;
    margin: 0 0;
    padding: 0 0;
 }
@@ -42,6 +43,30 @@ body{
 
 .box.box-light {
    background: #fff;
+}
+/*
+* BOX CONSOLE */
+.box.box-console {
+   background: #fff;
+}
+.box.box-console .box-header {
+   padding: 10px 15px 5px 15px;
+}
+.box.box-console .box-header h4 {
+   font-size: 18px;
+}
+.box.box-console .box-body {
+   background: #000;
+   color: #fff;
+   padding-top: 10px;
+}
+.box.box-console .box-body .block {
+   font-size: 14px;
+}
+.box.box-console .box-body .block p {
+   color: #f39c12;
+   margin: 0 0;
+   padding: 0 0 1px 0;
 }
 
 /*

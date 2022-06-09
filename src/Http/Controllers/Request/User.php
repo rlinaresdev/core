@@ -18,9 +18,9 @@ class User extends FormRequest {
 
    public function rules() {
       return [
-         "user"   => "required",
-         "pwd"    => "required",
-         "rpwd"    => "same:pwd"
+         "email"     => "required",
+         "pwd"       => "required",
+         "rpwd"      => "same:pwd"
       ];
    }
 

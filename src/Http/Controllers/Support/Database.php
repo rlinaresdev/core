@@ -8,17 +8,21 @@ namespace Core\Http\Controllers\Support;
  *---------------------------------------------------------
 */
 use Core\User\Info;
+use Core\Model\Core;
 
 class Database {
 
    protected $app;
 
+   protected $components = [
+      "core"   => \Core\Info::class,
+      "users"  => \Core\User\Info::class,
+   ];
+
    public function __construct( ) {
    }
 
    public function data() {
-      
-      (new Info)->migrate("up");
 
       $data["title"]       = __("words.database");
       $data["engine"]      = $this->widgetDB();
@@ -37,6 +41,19 @@ class Database {
    }
 
    public function forge( $request ) {
-      return [];
+
+      foreach ( $this->components as $slug => $component ) {
+         if( method_exists( ($module = new $component), "install" ) ) {
+            $module->install( new Core );
+         }
+      }
+
+      (new \Core\User\Model\Store)->create([
+         "email"     => $request->input("email"),
+         "password"  => $request->input("pwd")
+      ]);
+
+      return redirect()->to("install/end");
    }
+
 }

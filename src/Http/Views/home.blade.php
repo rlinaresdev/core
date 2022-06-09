@@ -42,7 +42,7 @@
                   {{__("words.information")}}
                </a>
                <a href="{{url('requeriments')}}" class="bt bt-primary">{{__("words.requeriment")}}</a>
-               <a href="{{__url("env")}}" class="bt bt-uva">{{__("install.init")}}</a>
+               <a href="{{__url("/install/env")}}" class="bt bt-uva">{{__("install.init")}}</a>
             </article>
          </section>
       </article>
