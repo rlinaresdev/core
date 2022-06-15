@@ -32,10 +32,11 @@ class Loader {
 			return FALSE;
 		}
 
-		if( \Schema::hasTable(env("DB_DATABASE")) ) {
-			// if(self::$app["core"]->load("coredb")->has("core", "core")) {
-			// 	return (self::$app["core"]->load("coredb")->get("core", "core")->activated == 1);
-			// }
+		if( \Schema::hasTable(env("DB_DATABASE") )) {
+
+			if(self::$app["core"]->load("coredb")->has("core", "core")) {
+				return (self::$app["core"]->load("coredb")->get("core", "core")->activated == 1);
+			}
 		}
 		return FALSE;
 	}
@@ -172,5 +173,5 @@ class Loader {
 				}
 			}
 		}
-	}
+	}   
 }

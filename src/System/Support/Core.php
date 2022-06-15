@@ -74,4 +74,13 @@ class Core {
 		return $this->isAppStart("core", "core");
 	}
 
+   public function stableCore( $slug=null ) {
+
+      $apps = $this->load('coredb');
+
+      if( !empty($slug) && $apps->has("core", $slug) ) {
+         //return $apps->get("core", )
+      }
+   }
+
 }

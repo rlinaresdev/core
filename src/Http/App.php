@@ -31,3 +31,5 @@ $this->loadViewsFrom(__DIR__.'/Views', 'core');
 $this->publishes([
    __path("__core/System/Storage/Assets") => __path("__cdn")
 ], "core");
+
+//dd( core()->stableCore("core"));

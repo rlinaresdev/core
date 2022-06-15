@@ -25,7 +25,7 @@ class StorDB {
 	public function has($type=NULL, $slug=NULL)	{
 
 		if(empty($type) OR empty($slug)) return FALSE;
-
+      
 		if(Schema::hasTable($this->table)) {
 			return ( $this->db->table($this->table)
 												->where("type", $type)->where("slug", $slug)->count() > 0 );
