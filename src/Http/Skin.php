@@ -16,8 +16,14 @@ class Skin {
       "container" => "container"
    ];
 
+   protected $template = "core::layout";
+
    public function __construct( $slug=null ) {
       $this->slug = $slug;
+   }
+
+   public function setOrCreateVar( $key, $value ) {
+      $this->{$key} = $value;
    }
 
    public function setLayout( $key=null, $value=null ) {
@@ -33,7 +39,7 @@ class Skin {
    }
 
    public function path($uri="master") {
-      return "core::layout.$this->slug.$uri";
+      return "$this->template.$this->slug.$uri";
    }
 
    public function view($view=NULL, $data=[], $mergeData=[]) {

@@ -1,5 +1,5 @@
 <?php
-namespace Core\Http\Controllers;
+namespace Core\Http\Controllers\Install;
 
 /*
   *---------------------------------------------------------
@@ -9,14 +9,12 @@ namespace Core\Http\Controllers;
 */
 
 use Illuminate\Http\Request;
-use Core\Http\Controllers\Support\Env;
+use Core\Http\Controllers\Install\Support\Env;
 
 class EnvController extends Controller {
 
    public function __construct( Env $app ) {
       $this->boot($app);
-
-      $this->skin->setLayout("container", "col-4 offset-4");
    }
 
    public function index() {

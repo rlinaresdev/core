@@ -1,5 +1,5 @@
 <?php
-namespace Core\Http\Controllers\Support;
+namespace Core\Http\Controllers\Install\Support;
 
 /*
  *---------------------------------------------------------

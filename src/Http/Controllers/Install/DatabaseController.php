@@ -1,5 +1,5 @@
 <?php
-namespace Core\Http\Controllers;
+namespace Core\Http\Controllers\Install;
 
 /*
   *---------------------------------------------------------
@@ -8,14 +8,13 @@ namespace Core\Http\Controllers;
   *---------------------------------------------------------
 */
 
-use Core\Http\Controllers\Request\User;
-use Core\Http\Controllers\Support\Database;
+use Core\Http\Controllers\Install\Request\User;
+use Core\Http\Controllers\Install\Support\Database;
 
 class DatabaseController extends Controller {
 
    public function __construct( Database $app ) {
       $this->boot($app);
-      $this->skin->setLayout("container", "col-4 offset-4");
    }
 
    public function index() {

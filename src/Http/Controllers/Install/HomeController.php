@@ -1,5 +1,5 @@
 <?php
-namespace Core\Http\Controllers;
+namespace Core\Http\Controllers\Install;
 
 /*
   *---------------------------------------------------------
@@ -8,12 +8,12 @@ namespace Core\Http\Controllers;
   *---------------------------------------------------------
 */
 
-use Core\Http\Controllers\Support\Home;
+use Core\Http\Controllers\Install\Support\Home;
 
 class HomeController extends Controller {
 
    public function __construct( Home $app ) {
-      $this->boot($app);
+      $this->boot($app);      
    }
 
    public function index() {

@@ -27,7 +27,7 @@ class Controller extends BaseController {
    public function boot( $app=null, $data=[] ) {
 
       $theme = "bluelight";
-      
+
       $this->skin = new Skin($theme);
 
       $this->app        = $app;
@@ -47,6 +47,10 @@ class Controller extends BaseController {
 
       if( method_exists($app, "share") ) {
          $this->share($app->share());
+      }
+
+      if( method_exists($this, "parseData") ) {
+         $this->parseData();
       }
    }
 

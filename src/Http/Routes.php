@@ -7,7 +7,8 @@
  *---------------------------------------------------------
 */
 
-Route::prefix("install")->middleware("install")->group(function($route){
+Route::prefix("install")->middleware("install")->namespace("Install")->group(function($route){
+
    Route::get("/", "HomeController@index");
    Route::get("/requeriments", "HomeController@requeriment");
 

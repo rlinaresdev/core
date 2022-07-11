@@ -1,4 +1,4 @@
-@extends("core::layout.bluelight.master")
+@extends("core::install.layout.bluelight.master")
 
    @section("body")
 

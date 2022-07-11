@@ -1,5 +1,5 @@
 <?php
-namespace Core\Http\Controllers\Request;
+namespace Core\Http\Controllers\Install\Request;
 
 /*
  *---------------------------------------------------------
