@@ -60,7 +60,17 @@ class Info {
 
    public function install( $core ) {
       (new \Core\Database\Migration\TableSchema)->up();
-      $core->create($this->app())->addInfo($this->info());
+
+      $app  = $this->app();
+      $info = $this->info();
+
+      if( !$core->has($app["type"], $app["slug"])) {
+         $core->create($this->app())->addInfo($this->info());
+      }
+   }
+
+   public function uninstall(  ) {
+      (new \Core\Database\Migration\TableSchema)->down();
    }
 
   	public function meta() {

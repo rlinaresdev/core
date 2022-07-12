@@ -15,7 +15,6 @@
          <article class="box-body pt-4">
 
             <div class="block bg-light mb-3 pt-3">
-
                <ul class="list-group">
                   @foreach( $engine as $label => $value )
                   <li class="list-group-item px-3 py-1">
@@ -23,7 +22,6 @@
                   </li>
                   @endforeach
                </ul>
-
             </div>
 
             <div class="block">
@@ -54,23 +52,12 @@
                   <div class="form-group pt-2">
                      @csrf
                      <a href="{{__url('/install/env')}}" class="btn btn-outline-primary btn-sm">
-                        <i class="mdi mdi-arrow-left-bold"></i> {{__("words.return")}}
+                        {{__("words.return")}}
                      </a>
-
-                     @if( $isdb )
-                     <a href="{{__url('install/database/destroy')}}" class="btn btn-outline-danger btn-sm">
-                        <i class="mdi mdi-delete"></i> Eliminar entidades
-                     </a>
-                     <a href="{{__url('install/end')}}" class="btn btn-primary btn-sm">
-                         Siguiente <i class="mdi mdi-arrow-right-bold"></i>
-                     </a>
-                     @else
                      <button type="submit" name="button" class="btn btn-danger btn-sm btn-block">
                         <i class="mdi mdi-cog"></i>
                         {{__("words.forge")}} {{__("init.construct")}}
                      </button>
-                     @endif
-
                   </div>
                </form>
             </div>

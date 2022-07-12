@@ -13,8 +13,8 @@ class Info {
   		return [
   			"type"			=> "library",
   			"slug"			=> "users",
-  			"kernel"		   => \Vendor\Kernel::class,
-  			"info"			=> \Vendor\Info::class,
+  			"kernel"		   => \Core\User\Kernel::class,
+  			"info"			=> \Core\User\Info::class,
   			"token"			=> NULL,
   			"activated" 	=> 1,
   		];
@@ -53,10 +53,14 @@ class Info {
    }
 
    public function install( $core ) {
-      $core->create($this->app())->addInfo($this->info());
-      $this->migrate("up");
-      $this->seeder();
+      $app  = $this->app();
+      $info = $this->info();
 
+      if( !$core->has($app["type"], $app["slug"]) ) {
+         $core->create( $app )->addInfo( $info );
+         $this->migrate("up");
+         $this->seeder();
+      }
    }
 
    public function uninstall() {

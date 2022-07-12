@@ -21,8 +21,9 @@ Route::prefix("install")->middleware("install")->namespace("Install")->group(fun
       Route::get("/", "DatabaseController@index");
       Route::post("/", "DatabaseController@forge");
 
-      Route::get("/forge", function() {
-         return "trabajando";
-      });
+      Route::get("/destroy", "DatabaseController@destroy");
    });
+
+   Route::get( "end", "EndController@index" );
+
 });

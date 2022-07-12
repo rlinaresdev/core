@@ -19,15 +19,7 @@ class Controller extends BaseController {
           ## TEMPLATE
           $this->skin->setOrCreateVar("template", "core::install.layout");
 
-          ## ENV CONTENT LAYOUT
-          if( __segment(1, "install") && __segment(2, "env") ) {
-             $this->skin->setLayout("container", "col-4 offset-4");
-          }
-
-          ## DATABASE CONTENT LAYOUT
-          if( __segment(1, "install") && __segment(2, "database") ) {
-             $this->skin->setLayout("container", "col-4 offset-4");
-          }
+          $this->skin->setLayout("container", "col-4 offset-4");
        }
 
 }

@@ -54,15 +54,20 @@ class Core extends Model {
 		return $this->hasMany(CoreLocale::class, "app_id");
   }
 
-	/* PARAMTERS */
-	public function config($key=NULL, $default=NULL) {
+   /* PARAMTERS */
+   public function has($type, $slug) {
+      return ($this->where( "type", $type )->where( "slug", $slug )->count() > 0);
+   }
 
-		if( ($data = $this->configs()->where("key", $key) )->count() > 0 ) {
-			return $data->first()->value;
-		}
+   /* PARAMTERS */
+   public function config($key=NULL, $default=NULL) {
 
-		return $default;
-	}
+   	if( ($data = $this->configs()->where("key", $key) )->count() > 0 ) {
+   		return $data->first()->value;
+   	}
+
+   	return $default;
+   }
 
   public function skin($slug) {
 		return $this->where("type", "theme")->where("slug", $slug)->first() ?? abort( 500, __("exception.500")."::".__("exception.exists", [

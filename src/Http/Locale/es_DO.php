@@ -12,6 +12,7 @@ return [
    "laravel.environmet" => "Ambiente Laravel",
 
    "install.init"       => "Iniciar Instalación",
+   "install.end"        =>"La Instalación a finalizado",
    "init.construct"     => "Iniciar constructor",
 
    "user.admin"         => "Usuario Administrativo",
@@ -38,4 +39,9 @@ return [
    ## FORM VALIDAITION
    "validation.required" => "Campo requerido",
    "validation.same"     => "Loas campos no coinciden",
+
+   ## END
+   "end.install" => "La instalación a finalizado, al salir el ayudante de instalación se cerrará y no podrás acceder más",
+
+   "end.custom-back" => "Retrocede a la ventana anteriro",
 ];

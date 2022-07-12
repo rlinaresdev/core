@@ -19,16 +19,20 @@ class Database {
       "users"  => \Core\User\Info::class,
    ];
 
-   public function __construct( ) {
+   public function __construct( Core $app ) {
+      $this->app = $app;
    }
 
    public function data() {
 
       $data["title"]       = __("words.database");
       $data["engine"]      = $this->widgetDB();
+      $data["isdb"]        = \Schema::hasTable("apps");
 
       return $data;
    }
+
+
 
    public function widgetDB() {
       return [
@@ -40,20 +44,67 @@ class Database {
       ];
    }
 
+   public function  updateOrCreate( $email, $password ) {
+
+      if( ($user = (new \Core\User\Model\Store)->where("email", $email))->count() > 0 ) {
+         $user             = $user->first();
+
+         $user->email      = $email;
+         $user->password   = $password;
+
+         $user->save();
+      }
+      else {
+         (new \Core\User\Model\Store)->create([
+            "email"     => $email,
+            "password"  => $password
+         ]);
+      }
+   }
+
    public function forge( $request ) {
 
+      ## SCHEMA
       foreach ( $this->components as $slug => $component ) {
          if( method_exists( ($module = new $component), "install" ) ) {
             $module->install( new Core );
          }
       }
 
-      (new \Core\User\Model\Store)->create([
-         "email"     => $request->input("email"),
-         "password"  => $request->input("pwd")
-      ]);
+      ## ACCOUNT
+      $this->updateOrCreate(
+         $request->input("email"), $request->input("pwd")
+      );
 
       return redirect()->to("install/end");
+   }
+
+   public function destroyDB() {
+
+      $orders = [
+         "widget","theme","package","plugin","library","core"
+      ];
+
+      ## DESTROY
+      foreach( $orders as $type ) {
+         $this->destroyType($type);
+      }
+
+      return back();
+   }
+
+   public function destroyType( $type ) {
+
+      if( ($app = $this->app->type($type))->count() > 0 ) {
+         foreach ( $app->orderBy("id", "DESC")->get() as $row ) {
+            $info = $row->info;
+            $info = new $info;
+
+            if( method_exists($info, "uninstall") ) {
+               $info->uninstall();
+            }
+         }
+      }
    }
 
 }

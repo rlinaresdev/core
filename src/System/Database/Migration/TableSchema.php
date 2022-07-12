@@ -23,116 +23,125 @@ class TableSchema {
     ];
 
     public function routes() {
-      Schema::create('routes', function ($table) {
-         $table->increments('id');
+      if( !Schema::hasTable("routes") ) {
+         Schema::create('routes', function ($table) {
+            $table->increments('id');
 
-         $table->string("domain", 30)->nullable();
-         $table->string("method", 30);
-         $table->string("prefix", 30)->default('/');
-         $table->string("uri", 30)->default('/');
-         $table->string("name", 30)->nullable();
-         $table->string("action", 30);
+            $table->string("domain", 30)->nullable();
+            $table->string("method", 30);
+            $table->string("prefix", 30)->default('/');
+            $table->string("uri", 30)->default('/');
+            $table->string("name", 30)->nullable();
+            $table->string("action", 30);
 
-         $table->string("middleware", 30)->nullable();
+            $table->string("middleware", 30)->nullable();
 
-         $table->boolean("activated", 1)->default(1);
+            $table->boolean("activated", 1)->default(1);
 
-         $table->timestamps();
+            $table->timestamps();
 
-         $table->engine = 'InnoDB';
-      });
-    }
+            $table->engine = 'InnoDB';
+         });
+      }
+   }
 
     public function apps() {
+      if( !Schema::hasTable("apps") ) {
+         Schema::create('apps', function ($table) {
+            $table->increments('id');
 
-      Schema::create('apps', function ($table) {
-      	$table->increments('id');
+            $table->string("type", 30);
+            $table->string("slug", 30)->unique();
+            $table->text("info")->nullable();
+            $table->text("kernel")->nullable();
+            $table->text("token")->nullable();
 
-        $table->string("type", 30);
-        $table->string("slug", 30)->unique();
-        $table->text("info")->nullable();
-        $table->text("kernel")->nullable();
-        $table->text("token")->nullable();
+            $table->char("activated", 1)->default(0);
 
-        $table->char("activated", 1)->default(0);
+            $table->timestamps();
 
-        $table->timestamps();
-
-        $table->engine = 'InnoDB';
-      });
+            $table->engine = 'InnoDB';
+         });
+      }
     }
 
     public function apps_info() {
+      if( !Schema::hasTable("apps_info") ) {
+         Schema::create('apps_info', function ($table) {
+            $table->integer('app_id')->unsigned();
+            $table->foreign('app_id')->references('id')->on('apps')->onDelete('CASCADE')->onUpdate('CASCADE');
 
-      Schema::create('apps_info', function ($table) {
-         $table->integer('app_id')->unsigned();
-         $table->foreign('app_id')->references('id')->on('apps')->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->string("name", 30)->nullable();
+            $table->string("author", 150)->nullable();
+            $table->string("email", 80)->nullable();
+            $table->text("avatar")->default("cdn/assets/images/empty.png");
+            $table->string("license", 15)->nullable();
+            $table->text("support")->nullable();
+            $table->string("version", 15)->nullable();
+            $table->string("description", 100)->nullable();
+            $table->text("comment")->nullable();
 
-         $table->string("name", 30)->nullable();
-         $table->string("author", 150)->nullable();
-         $table->string("email", 80)->nullable();
-         $table->text("avatar")->default("cdn/assets/images/empty.png");
-         $table->string("license", 15)->nullable();
-         $table->text("support")->nullable();
-         $table->string("version", 15)->nullable();
-         $table->string("description", 100)->nullable();
-         $table->text("comment")->nullable();
+            $table->timestamps();
 
-         $table->timestamps();
-
-        $table->engine = 'InnoDB';
-      });
+            $table->engine = 'InnoDB';
+         });
+      }
     }
 
     public function apps_config() {
+      if( !Schema::hasTable("apps_config") ) {
+         Schema::create('apps_config', function ($table) {
 
-      Schema::create('apps_config', function ($table) {
+            $table->bigIncrements('id');
 
-      	$table->bigIncrements('id');
+            $table->integer('app_id')->unsigned();
+            $table->foreign('app_id')->references('id')->on('apps')->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->string("key", 200);
+            $table->text("value");
 
-        $table->integer('app_id')->unsigned();
-        $table->foreign('app_id')->references('id')->on('apps')->onDelete('CASCADE')->onUpdate('CASCADE');
-        $table->string("key", 200);
-        $table->text("value");
+            $table->boolean("activated")->default(1);
 
-        $table->boolean("activated")->default(1);
-
-        $table->engine = 'InnoDB';
-      });
+            $table->engine = 'InnoDB';
+         });
+      }
     }
 
     public function apps_locale() {
-      Schema::create('apps_locale', function ($table) {
-      	$table->bigIncrements('id');
+      if( !Schema::hasTable("apps_locale") ){
+         Schema::create('apps_locale', function ($table) {
+            $table->bigIncrements('id');
 
-        $table->integer('app_id')->unsigned();
-        $table->foreign('app_id')->references('id')->on('apps')->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->integer('app_id')->unsigned();
+            $table->foreign('app_id')->references('id')->on('apps')->onDelete('CASCADE')->onUpdate('CASCADE');
 
-        $table->string("key", 150);
-        $table->text("value");
+            $table->string("key", 150);
+            $table->text("value");
 
-        $table->boolean("activated")->default(1);
+            $table->boolean("activated")->default(1);
 
-        $table->engine = 'InnoDB';
-      });
+            $table->engine = 'InnoDB';
+         });
+      }
     }
 
     public function apps_meta() {
-      Schema::create('apps_meta', function ($table) {
-         $table->bigIncrements('id');
+      if( !Schema::hasTable("apps_meta") ) {
+         Schema::create('apps_meta', function ($table) {
+            $table->bigIncrements('id');
 
-         $table->string("type", 30);
+            $table->string("type", 30);
 
-         $table->integer('app_id')->unsigned();
-         $table->foreign('app_id')->references('id')->on('apps')->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->integer('app_id')->unsigned();
+            $table->foreign('app_id')->references('id')->on('apps')->onDelete('CASCADE')->onUpdate('CASCADE');
 
-         $table->string("key", 200);
-         $table->text("value");
+            $table->string("key", 200);
+            $table->text("value");
 
-         $table->boolean("activated")->default(1);
+            $table->boolean("activated")->default(1);
 
-         $table->engine = 'InnoDB';
-      });
+            $table->engine = 'InnoDB';
+         });         
+      }
     }
 
     public function up() {
