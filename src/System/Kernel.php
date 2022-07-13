@@ -12,7 +12,7 @@ use \ZipArchive;
 class Kernel {
 
    protected $services = [
-      
+
    ];
 
    protected $aliases = [];
@@ -26,12 +26,9 @@ class Kernel {
 	}
 
 	public function handler($app) {
-      if( $app["core"]->stable() == false ) {
-         $this->services = [
-            \Core\Providers\AppServiceProvider::class,
-            \Core\Providers\RouteServiceProvider::class
-         ];
-      }
-
+      $this->services = [
+         \Core\Providers\AppServiceProvider::class,
+         \Core\Providers\RouteServiceProvider::class
+      ];
 	}
 }

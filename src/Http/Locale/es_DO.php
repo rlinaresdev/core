@@ -20,7 +20,6 @@ return [
    "words.account"      => "Cuenta",
    "words.actions"      => "Acciones",
    "words.email"        => "Correo electrónico",
-   "words.return"       => "Retornar",
    "words.database"     => "Base de Datos",
    "words.engine"       => "Motor",
    "words.host"         => "Servidor",
@@ -29,11 +28,13 @@ return [
    "words.update"       => "update",
    "words.user"         => "Usuario",
    "words.migrations"   => "Migraciones",
+   "words.out"          => "Salir",
    "words.password"     => "Contraseña",
    "words.pconfirm"     => "Confirmar contraseña",
    "words.port"         => "Puerto",
    "words.publish"      => "Publicar",
    "words.requeriment"  => "Requerimientos",
+   "words.return"       => "Retornar",
    "words.user"         => "Usuario",
 
    ## FORM VALIDAITION
@@ -41,7 +42,7 @@ return [
    "validation.same"     => "Loas campos no coinciden",
 
    ## END
-   "end.install" => "La instalación a finalizado, al salir el ayudante de instalación se cerrará y no podrás acceder más",
+   "end.install" => "La instalación a finalizado, al salir del ayudante de instalación se cerrará y no podrás acceder más",
 
    "end.custom-back" => "Retrocede a la ventana anteriro",
 ];

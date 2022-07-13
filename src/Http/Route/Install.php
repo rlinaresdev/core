@@ -7,6 +7,7 @@
  *---------------------------------------------------------
 */
 
+
 Route::prefix("install")->middleware("install")->namespace("Install")->group(function($route){
 
    Route::get("/", "HomeController@index");
@@ -25,5 +26,7 @@ Route::prefix("install")->middleware("install")->namespace("Install")->group(fun
    });
 
    Route::get( "end", "EndController@index" );
+
+   Route::get( "close", "EndController@close" );
 
 });

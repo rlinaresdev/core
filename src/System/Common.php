@@ -63,6 +63,10 @@ if( !function_exists("__segment") ) {
 }
 
 /*
+* CORE ENVIRONMENT */
+Core::hypervisor();
+
+/*
 * Urls etiquetadas */
 Core::addUrl([
    "__base"    => Core::load("urls")->baseDir(),

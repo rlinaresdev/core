@@ -13,13 +13,21 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 
 class RouteServiceProvider extends ServiceProvider {
 
-   protected $namespace = "Core\Http\Controllers";
+   protected $namespace    = "Core\Http\Controllers";
+
+   protected $domain       = "__core/Http/Route/Install.php";
 
    public function boot() {
       parent::boot();
+
+      if( core()->start() ) {
+         $this->domain = "__core/Http/Route/App.php";
+      }
    }
 
    public function map() {
-      Route::middleware("web")->namespace($this->namespace)->group(__path('__core/Http/Routes.php'));
+
+      Route::middleware("web")
+         ->namespace("Core\Http\Controllers")->group(__path($this->domain));
    }
 }

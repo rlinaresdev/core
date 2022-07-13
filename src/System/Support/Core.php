@@ -14,6 +14,8 @@ class Core {
 
 	protected static $app;
 
+   protected $installed = false;
+
 	public function __construct( Bootstrap $app ) {
 		self::$app = $app;
 	}
@@ -21,6 +23,18 @@ class Core {
 	public function load( $key=NULL, $args=[], $params=[] ) {
 		return self::$app->load( $this, $key, $args, $params );
 	}
+
+   public function hypervisor() {
+
+      ## CORE ENVIRONMENT
+      if( $this->isAppStart("core", "core") ) {
+         $this->installed = TRUE;
+      }
+   }
+
+   public function start() {
+      return $this->installed;
+   }
 
    /*
    * MOUNT */
@@ -73,14 +87,5 @@ class Core {
 	public function stable() {
 		return $this->isAppStart("core", "core");
 	}
-
-   public function stableCore( $slug=null ) {
-
-      $apps = $this->load('coredb');
-
-      if( !empty($slug) && $apps->has("core", $slug) ) {
-         //return $apps->get("core", )
-      }
-   }
 
 }
