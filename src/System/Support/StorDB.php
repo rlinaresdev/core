@@ -25,7 +25,7 @@ class StorDB {
 	public function has($type=NULL, $slug=NULL)	{
 
 		if(empty($type) OR empty($slug)) return FALSE;
-      
+
 		if(Schema::hasTable($this->table)) {
 			return ( $this->db->table($this->table)
 												->where("type", $type)->where("slug", $slug)->count() > 0 );
@@ -98,4 +98,9 @@ class StorDB {
 
 		return $data->get(["type", "slug", "info", "token", "activated"]);
 	}
+
+   public function getActiveComponents() {
+      return $this->db->table($this->table)
+            ->where("activated", 1)->get(["type","driver"]);
+   }
 }

@@ -29,6 +29,8 @@ class Core {
       ## CORE ENVIRONMENT
       if( $this->isAppStart("core", "core") ) {
          $this->installed = TRUE;
+
+         $this->load("loader")->mountComponents();
       }
    }
 
@@ -40,6 +42,15 @@ class Core {
    * MOUNT */
    public function mount($info=null) {
       $this->load("loader")->mount( $info );
+   }
+
+   public function monitor( $default=null ) {
+      if( $this->installed ) {
+
+      }
+      else {
+         $this->mount(\Core\Info::class);
+      }
    }
 
 	/*

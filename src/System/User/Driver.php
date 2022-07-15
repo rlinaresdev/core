@@ -8,19 +8,9 @@ namespace Core\User;
  *---------------------------------------------------------
 */
 
-class Info {
-  	public function app() {
-  		return [
-  			"type"			=> "library",
-  			"slug"			=> "users",
-  			"kernel"		   => \Core\User\Kernel::class,
-  			"info"			=> \Core\User\Info::class,
-  			"token"			=> NULL,
-  			"activated" 	=> 1,
-  		];
-  	}
+class Driver {
 
-  	public function info() {
+   public function info() {
   		return [
   			"name"			=> "Name",
   			"author"		   => "Ing. Ramón A Linares Febles",
@@ -31,6 +21,20 @@ class Info {
   			"description" 	=> "Name V-1.0",
   		];
   	}
+
+  	public function app() {
+  		return [
+  			"type"			=> "library",
+  			"slug"			=> "users",
+  			"driver"			=> \Core\User\Driver::class,
+  			"token"			=> NULL,
+  			"activated" 	=> 1,
+  		];
+  	}
+
+   public function kernel() {
+      return \Core\User\Kernel::class;
+   }
 
    public function migrate($opt="up") {
 

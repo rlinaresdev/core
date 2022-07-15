@@ -52,8 +52,7 @@ class TableSchema {
 
             $table->string("type", 30);
             $table->string("slug", 30)->unique();
-            $table->text("info")->nullable();
-            $table->text("kernel")->nullable();
+            $table->text("driver")->nullable();
             $table->text("token")->nullable();
 
             $table->char("activated", 1)->default(0);
@@ -140,7 +139,7 @@ class TableSchema {
             $table->boolean("activated")->default(1);
 
             $table->engine = 'InnoDB';
-         });         
+         });
       }
     }
 

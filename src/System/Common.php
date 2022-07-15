@@ -73,7 +73,6 @@ Core::addUrl([
    "__cdn/"    => "__base/cdn/",
 ]);
 
-
 /*
 * Rutas etiquetadas */
 Core::addPath([
@@ -86,4 +85,7 @@ Core::addPath([
 
 /*
 * Iniitialze Core */
-Core::mount(\Core\Info::class);
+if( Core::start() ) {
+   $this->map(Core::load());
+}
+//Core::mount(\Core\Driver::class);

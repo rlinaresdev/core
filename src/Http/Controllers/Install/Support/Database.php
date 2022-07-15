@@ -7,16 +7,16 @@ namespace Core\Http\Controllers\Install\Support;
  * Santo Domingo República Dominicana.
  *---------------------------------------------------------
 */
-use Core\User\Info;
 use Core\Model\Core;
+use Core\User\Driver;
 
 class Database {
 
    protected $app;
 
    protected $components = [
-      "core"   => \Core\Info::class,
-      "users"  => \Core\User\Info::class,
+      "core"   => \Core\Driver::class,
+      "users"  => \Core\User\Driver::class,
    ];
 
    public function __construct( Core $app ) {
@@ -97,11 +97,13 @@ class Database {
 
       if( ($app = $this->app->type($type))->count() > 0 ) {
          foreach ( $app->orderBy("id", "DESC")->get() as $row ) {
-            $info = $row->info;
-            $info = new $info;
+            
+            $driver = $row->driver;
 
-            if( method_exists($info, "uninstall") ) {
-               $info->uninstall();
+            $driver = new $driver;
+
+            if( method_exists($driver, "uninstall") ) {
+               $driver->uninstall();
             }
          }
       }

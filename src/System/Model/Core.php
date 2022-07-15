@@ -20,8 +20,7 @@ class Core extends Model {
   protected $fillable = [
     "type",
 		"slug",
-		"kernel",
-		"info",
+		"driver",
 		"token",
 		"activated",
 		"created_at",

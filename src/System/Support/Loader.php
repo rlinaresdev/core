@@ -38,30 +38,65 @@ class Loader {
 				return (self::$app["core"]->load("coredb")->get("core", "core")->activated == 1);
 			}
 		}
-      
+
 		return FALSE;
 	}
 
    /*
    * MOUNTED */
-   public function mount( $info ) {
-      if( is_null($info) ) return null;
+   public function mount( $module ) {
 
-      $info       = $this->optimize($info);
-      $app        = (object) $info->app();
-      $credential = (object) $info->info();
+      if( is_null($module) ) return null;
 
-      /*
-      * ADD MODULES DRIVERS */
-      $this->addModule( array_merge($info->info(), $info->app()) );
+      if( array_key_exists($module, $this->modules) && $module == "core" ) {
 
-      /*
-      * CONFIG */
-      $this->mountConfig( $info );
+         $app = $this->modules[$module];
 
-      /*
-      * KERNEL */
-      $this->mountKernel( $app );
+         $this->mountConfig( $app );
+         $this->mountKernel( $app );
+      }
+
+      if( array_key_exists($module, $this->modules) && $module != "core" ) {
+
+         foreach ( $this->modules[$module] as $app ) {
+            $this->mountConfig( $app );
+            $this->mountKernel( $app );
+         }
+      }
+
+      // $driver       = $this->optimize($driver);
+      //
+      // if( is_object($driver) ) {
+      //    $app        = (object) $driver->app();
+      //    $credential = (object) $driver->info();
+      //
+      //    /*
+      //    * ADD MODULES DRIVERS */
+      //    $this->addModule( array_merge($driver->info(), $driver->app()) );
+      //
+      //    /*
+      //    * CONFIG */
+      //    $this->mountConfig( $driver );
+      //
+      //    /*
+      //    * KERNEL */
+      //    $this->mountKernel( $driver );
+      // }
+   }
+
+   public function mountComponents() {
+      $modules = self::$app["core"]->load("coredb")->getActiveComponents();
+
+      foreach ( $modules as $app ) {
+         if($app->type == "core") {
+            $this->modules[$app->type] = new $app->driver;
+         }
+         else {
+            if( array_key_exists($app->type, $this->modules) ) {
+               $this->modules[$app->type][] = new $app->driver;
+            }
+         }
+      }
    }
 
    public function addModule( $app ) {
@@ -80,25 +115,25 @@ class Loader {
       }
    }
 
-   public function mountKernel( $app ) {
-      if( isset($app->kernel) ) {
-         $this->run($app->kernel);
+   public function mountKernel( $driver ) {
+      if( method_exists($driver, "kernel") ) {
+         $this->run($driver->kernel());
       }
    }
 
-   public function optimize($info) {
-      if( is_object($info) ) {
-         return $info;
+   public function optimize($driver) {
+      if( is_object($driver) ) {
+         return $driver;
       }
 
-      if( is_string($info) ) {
-         if( class_exists($info) ) {
-            return new $info();
+      if( is_string($driver) ) {
+         if( class_exists($driver) ) {
+            return new $driver;
          }
       }
 
       abort(500, "Error Info Class", [
-         "info"   => $info
+         "info"   => $driver
       ]);
    }
 
@@ -155,22 +190,27 @@ class Loader {
 
 		if( in_array($type, ["core", "library", "package", "plugin"]) ) {
 
-			if( !empty( $stors = self::$app["malla"]->load("coredb")->getType($type) ) ) {
+         $DB = self::$app["core"]->load("coredb");
 
+			if( !empty( $stors = $DB->getType($type) ) ) {
+            $data = [];
 				foreach ($stors as $app ) {
-					if($app->activated == 1) {
-						/*
-						* LOAD APP RESOURCES */
-						if( !empty( ($configs = self::$app["malla"]->load("coredb")->getConfig($type, $app)) ) ) {
-							foreach ( $configs as $config ) {
-								config()->set($config->key, $config->value);
-							}
-						}
 
-						/*
-						* LOAD APP KERNEL */
-						$this->run($app->kernel);
+					if($app->activated == 1) {
+
+						// /*
+						// * LOAD APP RESOURCES */
+						// if( !empty( ($configs = $DB->getConfig($type, $app)) ) ) {
+						// 	foreach ( $configs as $config ) {
+						// 		config()->set($config->key, $config->value);
+						// 	}
+						// }
+                  //
+						// /*
+						// * LOAD APP KERNEL */
+						// $this->run($app->kernel);
 					}
+
 				}
 			}
 		}
